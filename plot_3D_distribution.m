@@ -22,6 +22,10 @@ function [h] = plot_3D_distribution(coords,varargin)
 % metric      = [1 1 1 1 1];      % metric used in simulation [r_wgt a_wgt r_exp r_exp2 a_exp]
 % chdens      = [1 1 0 0];        % charge density used in simulation
 % rscale      = 1;                % scales ball size
+% fignr       = 100;
+
+addpath Util           % Contains various help functions
+addpath X_Distribs     % Contains a number of optimized vector distributions
 
 if nargin<1              fprintf('\n A 3D [3,N] vector distribution must be given \n\n');  return; end 
 
@@ -32,9 +36,9 @@ rad1  = sradi(min(8,ntot));   % try to catch first 'shell' with more than 3 orie
 
 % Set default values for input arguments
 colval      = radi';            % values used for coloring of position markers
-ashell      = [0.1 1];          % alfa - opacity of sphere shells
+ashell      = [0.5 0.3];          % alfa - opacity of sphere shells
 rshell      = [eps 1];          % radi of transparent shells
-rhalf       = rad1+0.02;        % radius obove which only positions having x>0 are shown
+rhalf       = 1e6;%rad1+0.02;        % radius obove which only positions having x>0 are shown
 ballsize    = 15/ntot^(1/6);    % size of charge marker balls
 shellexp    = [2 2];            % superquadric exponent for transparent shells
 relcolscale = 1;                % 1 => stretch colorspace over min-max values
@@ -67,6 +71,7 @@ for nvin = 1:2:numel(varargin)
       case 'chdens';        chdens        = varargin{nvin+1};
       case 'rscale';        rscale        = varargin{nvin+1};
       case 'saveCode';      saveCode      = varargin{nvin+1};
+      case 'fignr';                         figure(varargin{nvin+1})
       otherwise
         help plot_3D_distribution;
         error([' - Unexpected Option: ' varargin{nvin}])
