@@ -1,7 +1,8 @@
 PRESENTATION - HANS KNUTSSON
 
 I am currently Professor Emeritus at Linköping University in Sweden. I have more than 400 publications in image processing
-and machine learning. The 10 most cited have a total of more than 5000 citations, presently my h-index is 42. I am one of the founding members of CMIV - the Center for Image Science and Visualization. I hace supervised 21 PhD students to completion.
+and machine learning. The 10 most cited have a total of more than 5000 citations, presently my h-index is 42. I am one
+of the founding members of CMIV - the Center for Image Science and Visualization. I hace supervised 21 PhD students to completion.
 
 I obtained my PhD in 1982. In 1984 - 1986 I held a Postdoctoral Fellowship position at the Rockefeller University Neurobiology Laboratory headed by Nobel Laureate Torsten Wiesel.
 
