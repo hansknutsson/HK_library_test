@@ -33,7 +33,10 @@ function [Vwgts, ErrSPH, A, W] = Optimize_SPH_filters(varargin)
 %
 % Outputs:
 % --------
-% Vwgts:  [1,N] real array  - Optimized weights for each vector  
+% Vwgts:  [1,N] real array  - Optimized weights for each vector
+
+addpath Util           % Contains various help functions
+addpath X_Distribs     % Contains a number of optimized vector distributions
 
 % Set default values for input arguments
 vecs     = 61;
@@ -53,8 +56,8 @@ relcol   = 0;
 Npdeg    = 2;
 fignr1   = 5000; 
 saveCode = 0;       
-optimize = 1;
 
+optimize = 1;  % will be set to zero if Vwgts are entered
 for nvin = 1:2:numel(varargin)
     switch varargin{nvin}
       case 'Distr';       vecs       = varargin{nvin+1};
@@ -86,21 +89,21 @@ if numel(vecs) == 1;
     Nvec1  = Nexist(find(abs(Nexist - Nvec) - min(abs(Nexist - Nvec)) == 0));  % pick closest existing distribution
     if min(abs(Nexist - Nvec)) > 0; fprintf('\n! Picking closest precomputed vector distribution: Nvec = %3i \n',Nvec1); end
     switch Nvec1
-      case 6;   dName = 'X_Distribs/X_006_Qdistr_03641__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 10;  dName = 'X_Distribs/X_010_Qdistr_03640__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';      
-      case 16;  dName = 'X_Distribs/X_016_Qdistr_03633__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 21;  dName = 'X_Distribs/X_021_Qdistr_03629__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat'; % (used for ISMRM 2019)
-      case 30;  dName = 'X_Distribs/X_030_Qdistr_03631__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 46;  dName = 'X_Distribs/X_46_SHELL.mat';   % (very good)
-      case 61;  dName = 'X_Distribs/X_061_Qdistr_03632__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 102; dName = 'X_Distribs/X_102_Qdistr_03634__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 120; dName = 'X_Distribs/X_120_SHELL.mat';  % (very good)      
-      case 200; dName = 'X_Distribs/X_200_oneSHELL_2.00_2.00_2.00_1.00_1.00_J0_S1.mat'; % (very good)
-      case 300; dName = 'X_Distribs/X_300_Qdistr_03635__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 400; dName = 'X_Distribs/X_400_Qdistr_03655__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat'
-      case 500; dName = 'X_Distribs/X_500_Qdistr_03645__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 600; dName = 'X_Distribs/X_600_Qdistr_03652__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
-      case 800; dName = 'X_Distribs/X_800_Qdistr_03662__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 6;   dName = 'X_006_Qdistr_03641__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 10;  dName = 'X_010_Qdistr_03640__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';      
+      case 16;  dName = 'X_016_Qdistr_03633__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 21;  dName = 'X_021_Qdistr_03629__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat'; % (used for ISMRM 2019)
+      case 30;  dName = 'X_030_Qdistr_03631__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 46;  dName = 'X_46_SHELL.mat';   % (very good)
+      case 61;  dName = 'X_061_Qdistr_03632__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 102; dName = 'X_102_Qdistr_03634__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 120; dName = 'X_120_SHELL.mat';  % (very good)      
+      case 200; dName = 'X_200_oneSHELL_2.00_2.00_2.00_1.00_1.00_J0_S1.mat'; % (very good)
+      case 300; dName = 'X_300_Qdistr_03635__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 400; dName = 'X_400_Qdistr_03655__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat'
+      case 500; dName = 'X_500_Qdistr_03645__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 600; dName = 'X_600_Qdistr_03652__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
+      case 800; dName = 'X_800_Qdistr_03662__1.00_2.00_8.00_1.00_0.00_J0_S1_1.00_1.50_0.03_0.00.mat';
       %otherwise; fprintf('\n No precomputed %3i vector distribution found \n',Nvec); return
     end
     load(dName)
