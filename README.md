@@ -14,5 +14,5 @@ In collaboration with LMI , the Laboratory for Mathematics in Imaging at Harvard
  UPLOADED CODE
  
  I developed the upploaded code as tools in my research towards finding optimal sets of waveforms for analysis
- of microstructural tissue features using diffusion weighted MRI (dMRI). The code can be used for optimisation, simulation
- and visualisation of a number of aspects in dMRI
+ of microstructural tissue features using diffusion weighted MRI (dMRI). The code can be used for optimization, simulation
+ and visualisation of a number of aspects in dMRI.
