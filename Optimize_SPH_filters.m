@@ -2,7 +2,7 @@ function [Vwgts, ErrSPH, A, W] = Optimize_SPH_filters(varargin)
 % --------
 % function [Vwgts, ErrSPH, A, W] = Optimize_SPH_filters(varargin)
 % --------
-% Finds the amplitude of the projection of a set of 3 dimensional vectors on spherical harmonics (SPH) functions
+% Finds the amplitude of the projection of a set of 3 dimensional vectors on spherical harmonics (SPH) functions.
 % Only a 'single' vector set should be entered. Using double ([x -x]) sets will work but be slower.
 %
 % @ Hans Knutsson   January 2019
