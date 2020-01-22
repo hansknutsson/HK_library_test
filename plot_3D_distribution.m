@@ -2,7 +2,7 @@ function [h] = plot_3D_distribution(coords,varargin)
 % --------
 % function [h] = plot_3D_distribution(coords,varargin)
 % --------
-% @ Hans Knutsson   January 2019
+% @ Hans Knutsson   January 2020
 %
 % Input arguments and default values
 % coords                          % A 3D [N,3] vector distribution must be given
