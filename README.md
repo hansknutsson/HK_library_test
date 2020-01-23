@@ -1,4 +1,4 @@
-## PRESENTATION - HANS KNUTSSON
+### PRESENTATION - HANS KNUTSSON
 
 I am currently Professor Emeritus at Linköping University in Sweden. I have more than 400 publications in image processing
 and machine learning. The 10 most cited have a total of more than 5000 citations, presently my h-index is 42. I am one of the founding members of CMIV - the Center for Image Science and Visualization. I hace supervised 21 PhD students to completion.
@@ -12,7 +12,7 @@ In magnetic resonance imaging (MRI) I introduced Canonical Correlation based fMR
 In collaboration with LMI , the Laboratory for Mathematics in Imaging at Harvard Medical School and the Surgical Planning Laboratory in Boston he has also started a new line of research aiming at developing a common theoretical framework for sampling, representation and visualization of in vivo diffusion processes using MRI.
 
  
- ## UPLOADED CODE
+ ### UPLOADED CODE
  
  I developed the upploaded code as tools in my research towards finding optimal sets of waveforms for analysis
  of microstructural tissue features using diffusion weighted MRI (dMRI). The code can be used for optimization, simulation
