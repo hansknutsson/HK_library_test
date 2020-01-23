@@ -9,7 +9,7 @@ function h = subplotHK(m,n,p,d,s);
 %
 %   For example
 %
-%      SUBPLOTHK(M,N,P,0.2,0.9) 
+%   SUBPLOTHK(M,N,P,0.2,0.9) 
 %       
 %   sets the space to 20% of the axix size, and the global plot scale to 0.9. 
 %
